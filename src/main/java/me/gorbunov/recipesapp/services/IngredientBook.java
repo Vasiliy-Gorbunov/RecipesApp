@@ -1,9 +1,10 @@
 package me.gorbunov.recipesapp.services;
 
 import me.gorbunov.recipesapp.model.Ingredient;
+import org.springframework.stereotype.Service;
 
 public interface IngredientBook {
-    void addIngredient(Ingredient ingredient);
+    Integer addIngredient(Ingredient ingredient);
 
     Ingredient getIngredient(int id);
 }

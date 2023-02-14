@@ -1,20 +1,19 @@
 package me.gorbunov.recipesapp.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 public class Ingredient {
+
+    private String name;
+    private int count;
+    private String measureUnit;
 
     public Ingredient(String name, int count, String measureUnit) {
         setName(name);
         setCount(count);
         setMeasureUnit(measureUnit);
     }
-
-    private String name;
-    private int count;
-    private String measureUnit;
 
     public String getName() {
         return name;
