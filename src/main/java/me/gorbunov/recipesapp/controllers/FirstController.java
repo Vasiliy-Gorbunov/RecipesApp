@@ -16,6 +16,7 @@ public class FirstController {
         return "Приложение запущено";
     }
 
+
     @GetMapping("/info")
     public String getInfo() throws IOException {
         Path path = Paths.get("src/main/resources/README.md");
