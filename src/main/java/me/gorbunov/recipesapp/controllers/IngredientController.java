@@ -5,6 +5,8 @@ import me.gorbunov.recipesapp.services.IngredientBook;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/ingredients")
 public class IngredientController {
@@ -29,5 +31,28 @@ public class IngredientController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(ingredient);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<Map<Integer, Ingredient>> getAllIngredients() {
+        return ResponseEntity.ok(ingredientBook.getAllIngredients());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Ingredient> updateIngredient(@PathVariable Integer id, @RequestBody Ingredient ingredient) {
+        if (ingredientBook.updateIngredient(id, ingredient) == null) {
+            return ResponseEntity.notFound().build();
+        }
+        Ingredient newIngredient = ingredientBook.updateIngredient(id, ingredient);
+        return ResponseEntity.ok(newIngredient);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Integer> deleteIngredient(@PathVariable Integer id) {
+        if (!ingredientBook.deleteIngredient(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        ingredientBook.deleteIngredient(id);
+        return ResponseEntity.ok(id);
     }
 }

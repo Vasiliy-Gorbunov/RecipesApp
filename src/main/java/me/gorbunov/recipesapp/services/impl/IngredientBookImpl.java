@@ -23,4 +23,27 @@ public class IngredientBookImpl implements IngredientBook {
     public Ingredient getIngredient(int id) {
         return INGREDIENT_BOOK.get(id);
     }
+
+    @Override
+    public Map<Integer, Ingredient> getAllIngredients() {
+        return INGREDIENT_BOOK;
+    }
+
+    @Override
+    public Ingredient updateIngredient(int id, Ingredient ingredient) {
+        if (INGREDIENT_BOOK.containsKey(id)) {
+            INGREDIENT_BOOK.replace(id, ingredient);
+            return INGREDIENT_BOOK.get(id);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean deleteIngredient(int id) {
+        if (INGREDIENT_BOOK.containsKey(id)) {
+            INGREDIENT_BOOK.remove(id);
+            return true;
+        }
+        return false;
+    }
 }
