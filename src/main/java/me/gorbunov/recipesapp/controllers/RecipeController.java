@@ -39,16 +39,17 @@ public class RecipeController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Recipe> updateRecipe(@PathVariable Integer id, @RequestBody Recipe recipe) {
-        if (recipeBook.updateRecipe(id, recipe) == null) {
+        Recipe newRecipe = recipeBook.updateRecipe(id, recipe);
+        if (newRecipe == null) {
             return ResponseEntity.notFound().build();
         }
-        Recipe newRecipe = recipeBook.updateRecipe(id, recipe);
         return ResponseEntity.ok(newRecipe);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Integer> deleteRecipe(@PathVariable Integer id) {
-        if (!recipeBook.deleteRecipe(id)) {
+        boolean delete = recipeBook.deleteRecipe(id);
+        if (!delete) {
             return ResponseEntity.notFound().build();
         }
         recipeBook.deleteRecipe(id);

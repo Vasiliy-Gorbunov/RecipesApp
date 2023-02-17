@@ -40,16 +40,17 @@ public class IngredientController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Ingredient> updateIngredient(@PathVariable Integer id, @RequestBody Ingredient ingredient) {
-        if (ingredientBook.updateIngredient(id, ingredient) == null) {
+        Ingredient newIngredient = ingredientBook.updateIngredient(id, ingredient);
+        if (newIngredient == null) {
             return ResponseEntity.notFound().build();
         }
-        Ingredient newIngredient = ingredientBook.updateIngredient(id, ingredient);
         return ResponseEntity.ok(newIngredient);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Integer> deleteIngredient(@PathVariable Integer id) {
-        if (!ingredientBook.deleteIngredient(id)) {
+        boolean delete = ingredientBook.deleteIngredient(id);
+        if (!delete) {
             return ResponseEntity.notFound().build();
         }
         ingredientBook.deleteIngredient(id);

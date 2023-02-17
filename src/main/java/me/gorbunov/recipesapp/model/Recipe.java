@@ -10,7 +10,7 @@ public class Recipe {
     private String name;
     private int cookingTime;
     private List<Ingredient> ingredients;
-    private LinkedList<String> cookSteps;
+    private List<String> cookSteps;
 
 
     public Recipe(String name, int cookingTime, List<Ingredient> ingredients, LinkedList<String> cookSteps) {
@@ -20,19 +20,12 @@ public class Recipe {
         this.cookSteps = cookSteps;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public void setName(String name) {
         if (name == null || name.isEmpty() || name.isBlank()) {
             throw new IllegalArgumentException("Поле \"name\" должно быть заполнено");
         }
         this.name = name;
-    }
-
-    public int getCookingTime() {
-        return cookingTime;
     }
 
     public void setCookingTime(int cookingTime) {
@@ -42,19 +35,4 @@ public class Recipe {
         this.cookingTime = cookingTime;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public LinkedList<String> getCookSteps() {
-        return cookSteps;
-    }
-
-    public void setCookSteps(LinkedList<String> cookSteps) {
-        this.cookSteps = cookSteps;
-    }
 }
