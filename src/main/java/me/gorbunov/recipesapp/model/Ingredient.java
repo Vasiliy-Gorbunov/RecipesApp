@@ -1,6 +1,7 @@
 package me.gorbunov.recipesapp.model;
 
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 
 @Data
 public class Ingredient {
@@ -18,7 +19,7 @@ public class Ingredient {
 
 
     public void setName(String name) {
-        if (name == null || name.isEmpty() || name.isBlank()) {
+        if (StringUtils.isBlank(name)) {
             throw new IllegalArgumentException("Поле \"name\" должно быть заполнено");
         }
         this.name = name;
@@ -32,7 +33,7 @@ public class Ingredient {
     }
 
     public void setMeasureUnit(String measureUnit) {
-        if (measureUnit == null || measureUnit.isEmpty() || measureUnit.isBlank()) {
+        if (StringUtils.isBlank(measureUnit)) {
             throw new IllegalArgumentException("Поле \"measureUnit\" должно быть заполнено");
         }
         this.measureUnit = measureUnit;

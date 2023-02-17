@@ -1,6 +1,7 @@
 package me.gorbunov.recipesapp.model;
 
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Recipe {
 
 
     public void setName(String name) {
-        if (name == null || name.isEmpty() || name.isBlank()) {
+        if (StringUtils.isBlank(name)) {
             throw new IllegalArgumentException("Поле \"name\" должно быть заполнено");
         }
         this.name = name;
