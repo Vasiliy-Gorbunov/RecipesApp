@@ -1,9 +1,11 @@
 package me.gorbunov.recipesapp.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 @Data
+@NoArgsConstructor
 public class Ingredient {
 
     private String name;

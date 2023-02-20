@@ -1,12 +1,14 @@
 package me.gorbunov.recipesapp.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.LinkedList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class Recipe {
     private String name;
     private int cookingTime;
