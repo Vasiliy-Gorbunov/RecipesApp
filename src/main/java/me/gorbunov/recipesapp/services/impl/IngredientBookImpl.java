@@ -17,7 +17,7 @@ public class IngredientBookImpl implements IngredientBook {
 
     private final FilesService filesService;
 
-    private static HashMap<Integer, Ingredient> INGREDIENT_BOOK = new HashMap<>();
+    private static Map<Integer, Ingredient> INGREDIENT_BOOK = new HashMap<>();
     private static int id = 0;
 
     public IngredientBookImpl(FilesService filesService) {
@@ -60,6 +60,7 @@ public class IngredientBookImpl implements IngredientBook {
     public boolean deleteIngredient(int id) {
         if (INGREDIENT_BOOK.containsKey(id)) {
             INGREDIENT_BOOK.remove(id);
+            saveToFile();
             return true;
         }
         return false;

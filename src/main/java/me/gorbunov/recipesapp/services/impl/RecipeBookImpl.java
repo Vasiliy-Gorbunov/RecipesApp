@@ -17,7 +17,7 @@ public class RecipeBookImpl implements RecipeBook {
 
     private final FilesService filesService;
 
-    private static HashMap<Integer, Recipe> RECIPE_BOOK = new HashMap<>();
+    private static Map<Integer, Recipe> RECIPE_BOOK = new HashMap<>();
     private static int id = 0;
 
     public RecipeBookImpl(FilesService filesService) {
@@ -60,6 +60,7 @@ public class RecipeBookImpl implements RecipeBook {
     public boolean deleteRecipe(int id) {
         if (RECIPE_BOOK.containsKey(id)) {
             RECIPE_BOOK.remove(id);
+            saveToFile();
             return true;
         }
         return false;
