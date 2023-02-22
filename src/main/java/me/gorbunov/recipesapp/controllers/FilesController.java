@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 @RestController
 @RequestMapping("/files")
@@ -57,6 +59,31 @@ public class FilesController {
                 .body(resource);
     }
 
+    @GetMapping("/export/recipes/text")
+    @Operation(
+            summary = "Формирование текстового файла с рецептами",
+            description = "Позволяет скачать текстовый файл со всеми рецептами"
+    )
+    public ResponseEntity<Object> downloadRecipesTextFile() {
+        try {
+            Path path = recipeBook.getRecipesAsText();
+            if (Files.size(path) == 0) {
+                return ResponseEntity.noContent().build();
+            }
+            InputStreamResource resource = new InputStreamResource(new FileInputStream(path.toFile()));
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .contentLength(Files.size(path))
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"RecipesBook.txt\"")
+                    .body(resource);
+        } catch (IOException e) {
+            e.getStackTrace();
+            return ResponseEntity.internalServerError().body(e.toString());
+        }
+
+
+    }
+
     @PostMapping(value = "/import/recipes", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(
             summary = "Загрузка своего файла с рецептами",
@@ -77,8 +104,9 @@ public class FilesController {
             e.getStackTrace();
             return ResponseEntity.internalServerError().build();
         }
-
     }
+
+
 
     @PostMapping(value = "/import/ingredients", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(

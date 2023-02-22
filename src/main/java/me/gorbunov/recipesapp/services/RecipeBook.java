@@ -2,8 +2,12 @@ package me.gorbunov.recipesapp.services;
 
 import me.gorbunov.recipesapp.model.Recipe;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Map;
 public interface RecipeBook {
+
+    Path getRecipesAsText() throws IOException;
 
     Integer addNewRecipe(Recipe recipe);
 

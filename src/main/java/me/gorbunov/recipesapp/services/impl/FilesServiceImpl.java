@@ -95,4 +95,13 @@ public class FilesServiceImpl implements FilesService {
     public File getIngredientsFile() {
         return getDataFile(nameOfIngredientsFile);
     }
+
+    @Override
+    public Path createTempFile() {
+        try {
+            return Files.createTempFile(Path.of(pathToFileFolder), "tmp", "");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
