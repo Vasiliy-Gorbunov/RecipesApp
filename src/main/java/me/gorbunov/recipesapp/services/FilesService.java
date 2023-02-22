@@ -1,5 +1,7 @@
 package me.gorbunov.recipesapp.services;
 
+import java.io.File;
+
 public interface FilesService {
     void saveToRecipesFile(String json);
 
@@ -8,4 +10,10 @@ public interface FilesService {
     String readFromRecipesFile();
 
     String readFromIngredientsFile();
+
+    void cleanDataFile(String fileName);
+
+    File getRecipesFile();
+
+    File getIngredientsFile();
 }

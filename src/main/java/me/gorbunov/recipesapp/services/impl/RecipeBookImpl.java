@@ -75,7 +75,8 @@ public class RecipeBookImpl implements RecipeBook {
         }
     }
 
-    private void readFromFile() {
+    @Override
+    public void readFromFile() {
         String json = filesService.readFromRecipesFile();
         try {
             RECIPE_BOOK = new ObjectMapper().readValue(json, new TypeReference<>() {

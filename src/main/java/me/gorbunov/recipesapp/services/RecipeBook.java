@@ -14,4 +14,6 @@ public interface RecipeBook {
     Recipe updateRecipe(int id, Recipe recipe);
 
     boolean deleteRecipe(int id);
+
+    void readFromFile();
 }

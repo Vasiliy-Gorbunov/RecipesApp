@@ -14,4 +14,6 @@ public interface IngredientBook {
     Ingredient updateIngredient(int id, Ingredient ingredient);
 
     boolean deleteIngredient(int id);
+
+    void readFromFile();
 }
