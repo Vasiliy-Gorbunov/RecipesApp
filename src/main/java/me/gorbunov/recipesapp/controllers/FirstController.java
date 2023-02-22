@@ -1,5 +1,11 @@
 package me.gorbunov.recipesapp.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,13 +16,37 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
+@Tag(name = "Базовый контроллер", description = "Выводит стартовую страницу и страницу с информацией о приложении")
+@ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Запрос выполнен успешно.", content = {@Content(mediaType = "application/json")}),
+        @ApiResponse(responseCode = "400", description = "Ошибка в параметрах запроса.", content = {@Content(mediaType = "application/json")}),
+        @ApiResponse(responseCode = "404", description = "URL неверный или такого действия нет в веб-приложении.", content = {@Content(mediaType = "application/json")}),
+        @ApiResponse(responseCode = "500", description = "Во время выполнения запроса произошла ошибка на сервере.", content = {@Content(mediaType = "application/json")})
+})
 public class FirstController {
     @GetMapping("/")
+    @Operation(
+            summary = "Стартовая страница приложения"
+    )
+    @ApiResponse(
+            content = {
+                    @Content(
+                            schema = @Schema(
+                                    example = "Приложение запущено"
+                            )
+                    )
+            }
+    )
     public String startApp() {
         return "Приложение запущено";
     }
 
+
     @GetMapping("/info")
+    @Operation(
+            summary = "Информация о проекте",
+            description = "На этой странице выводится информация о проекте"
+    )
     public String getInfo() throws IOException {
         Path path = Paths.get("src/main/resources/README.md");
         List<String> readme = Files.readAllLines(path);

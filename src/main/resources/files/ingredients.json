@@ -1,0 +1,12 @@
+{
+  "0": {
+    "name": "Томат",
+    "count": 1,
+    "measureUnit": "шт"
+  },
+  "1": {
+    "name": "Молоко",
+    "count": 1000,
+    "measureUnit": "мл"
+  }
+}
